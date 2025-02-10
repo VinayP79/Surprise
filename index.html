@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Teddy Bear</title>
+    <style>
+        body {
+            background-color: #f8e8c8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+        .teddy {
+            width: 150px;
+            position: absolute;
+            cursor: grab;
+            transition: transform 0.2s ease;
+        }
+        .teddy:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+ 
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Teddy_Bear.png"
+         alt="Teddy Bear" class="teddy" id="teddy">
+ 
+    <script>
+        const teddy = document.getElementById('teddy');
+ 
+        let isDragging = false;
+ 
+        teddy.addEventListener('mousedown', (e) => {
+            isDragging = true;
+        });
+ 
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+teddy.style.left = `${e.clientX - 75}px`;
+teddy.style.top = `${e.clientY - 75}px`;
+            }
+        });
+ 
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+ 
+        teddy.addEventListener('click', () => {
+teddy.style.transform = `rotate(${Math.random() * 360}deg)`;
+        });
+    </script>
+ 
+</body>
+</html>
